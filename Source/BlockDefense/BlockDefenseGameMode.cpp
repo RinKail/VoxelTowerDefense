@@ -99,7 +99,7 @@ void ABlockDefenseGameMode::ReplaceTile(class AMap_Tile_Game* Tile)
 	TileScale = Tile->GetTileScale();
 	FVector2D Key = FVector2D(Tile->GetActorLocation().X / Tile->GetTileScale(), Tile->GetActorLocation().Y / Tile->GetTileScale());
 	int ClusterChannel = Tile->GetClusterChannel();
-
+	UpdateLockedTiles();
 	
 	TileList[Key] = Tile;
 }

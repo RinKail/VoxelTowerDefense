@@ -62,14 +62,13 @@ ABuildableBase* AMap_ConstructionGrid::AddBlock(FVector Position, EBlockType Typ
 	}
 	else          
 	{
+		
 		//A valid Location has been found, creating a ConstructionBlock.
-	
+		//Populate the construction data
 		FGridData Temp;
 		Temp.Type = Type;
 		Temp.Position = FVector((int)Position.X, (int)Position.Y, (int)Position.Z) / TileScale;
-		
-		
-		
+		UE_LOG(LogTemp, Warning, TEXT("Adding Block: [%f | %f | %f]"), Temp.Position.X, Temp.Position.Y, Temp.Position.Z);
 		ConstructionKey = GetWorld()->SpawnActor<AConstructionBlock>(BlockClass, Position, FRotator(0, 0, 0));
 		Temp.Actor = ConstructionKey;		//Used to make sure only the final block being generated can trigger the recipe testing.
 		Temp.Actor->Constructed(this);
