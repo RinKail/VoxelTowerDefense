@@ -3,16 +3,42 @@
 # How the project works
 This is a UE5 Tower-Defense project designed to be extendable.
 
+## Core Classes
+
+The classes listed bellow are where the core gameplay primarily takes place.
+
+
+### [GameMode](https://github.com/RinKail/VoxelTowerDefense/blob/main/Source/BlockDefense/BlockDefenseGameMode.h)
+This class is responsible for AI management and Wave Control.
+It also manages the tiles and their visual events / Lock States.
+
+### [PlayerController](https://github.com/RinKail/VoxelTowerDefense/blob/main/Source/BlockDefense/BlockDefensePlayerController.h)
+The player Controller class handles all gameplay inputs. It determines what tile is selected and what Blocks to place.
+It contains the Score and initial Recipe unlocks.
+
+### [Construction Grid](https://github.com/RinKail/VoxelTowerDefense/blob/main/Source/BlockDefense/Map/Map_ConstructionGrid.h)
+The Construction grid handles all building and is seperate from the tiles. 
+This only cares about what Blocks are currently placed and what tiles currently have a Building. 
+
+### [Buildable Base](https://github.com/RinKail/VoxelTowerDefense/blob/main/Source/BlockDefense/Buildables/BuildableBase.h)
+This is the base class for Buildings and primarily contains Blueprint events or virtual functions shared between all Buildables.
+
+#### [Towers](https://github.com/RinKail/VoxelTowerDefense/blob/main/Source/BlockDefense/Buildables/Buildable_Turret.h)
+This contains all turret logic and inherits from Buildable Base
+
+#### [Structures](https://github.com/RinKail/VoxelTowerDefense/blob/main/Source/BlockDefense/Buildables/Buildable_Structure.h)
+This contains all structure logic and inherits from Buildable Base.
+
 
 ## Creating new levels.
 Creating new levels and making them playable is rather straight forward. 
 The following section will go over the tools provided and how to add your new level to the game.
 
-### [Tiles](Map_Tile.h)
+### [Tiles](https://github.com/RinKail/VoxelTowerDefense/blob/main/Source/BlockDefense/Map/Map_Tile.cpp)
 There are two types of Tiles that the developer needs to worry about, Game Tiles and Editor Tiles. 
-#### Game Tiles
+#### [Game Tiles](https://github.com/RinKail/VoxelTowerDefense/blob/main/Source/BlockDefense/Map/Map_Tile_Game.h)
 Game tiles contain all of the important gameplay elements, if you wish to create a new set of tiles, this is the one you must inherit from.
-#### Editor Tiles
+#### [Editor Tiles](https://github.com/RinKail/VoxelTowerDefense/blob/main/Source/BlockDefense/Map/Map_Tile_Editor.h)
 Editor tiles instead are specifically for creating the maps in the editor. These contain no gameplay elements and are instead more akin to a tool. Once gameplay starts they will automatically generate their coresponding Gameplay counterpart, but these exact classes must be set by the designer. 
 
 By Default, there is a setup already available in the project.
