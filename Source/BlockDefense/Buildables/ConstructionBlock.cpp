@@ -37,9 +37,9 @@ void AConstructionBlock::Tick(float DeltaTime)
 
 void AConstructionBlock::RemoveFromGrid()
 {
-	FVector Temp = GetActorLocation() / Grid->GetTileScale();
+	FVector Temp = FVector((int)GetActorLocation().X, (int)GetActorLocation().Y, (int)GetActorLocation().Z) / Grid->GetTileScale();
 
-	Grid->RemoveBlock(FVector((int)Temp.X, (int)Temp.Y, (int)Temp.Z) );
+	Grid->RemoveBlock(Temp);
 	
 
 }
