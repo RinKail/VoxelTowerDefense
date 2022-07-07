@@ -8,7 +8,7 @@ This is a UE5 Tower-Defense project designed to be extendable.
 Creating new levels and making them playable is rather straight forward. 
 The following section will go over the tools provided and how to add your new level to the game.
 
-### Tiles
+### [Tiles](Map_Tile.h)
 There are two types of Tiles that the developer needs to worry about, Game Tiles and Editor Tiles. 
 #### Game Tiles
 Game tiles contain all of the important gameplay elements, if you wish to create a new set of tiles, this is the one you must inherit from.
