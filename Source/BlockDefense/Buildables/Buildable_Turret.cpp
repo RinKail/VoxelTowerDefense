@@ -99,6 +99,9 @@ void ABuildable_Turret::RemoveStructureLink(class ABuildable_Structure* TargetLi
 }
 void ABuildable_Turret::UpdateBonusStats()
 {
+	BonusDamage = 1.0f;
+	BonusRange = 0;
+	BonusShots = 1.0f;
 	for (int i = 0; i < LinkedBuildings.Num(); i++)
 	{
 		BonusDamage += LinkedBuildings[i]->GetBonusDamage();
