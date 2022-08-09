@@ -32,7 +32,7 @@ public:
 	//Triggered when a grid tile is changed. 
 	//Should be used for any visual events.
 	UFUNCTION(BlueprintImplementableEvent)
-		void OnTileChanged(FVector TilePosition, float Intensity);
+		void OnTileChanged(const FVector& TilePosition, const float Intensity);
 
 
 

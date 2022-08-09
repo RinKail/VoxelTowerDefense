@@ -89,7 +89,7 @@ public:
 	void OnGameOver();
 
 	UFUNCTION(BlueprintCallable, Category = "Visual Effects")
-	void TriggerTileUpdateVisualEvent(FVector Pos, float Intensity);
+	void TriggerTileUpdateVisualEvent(const FVector& Pos, float Intensity);
 
 	void UpdateLockedTiles();
 	void UnlockAdjacentTiles(class AMap_Tile_Game* Tile);
@@ -113,7 +113,7 @@ public:
 	void ReplaceTile(class AMap_Tile_Game* Tile);
 
 
-	class AEnemyBase* GetUnit(int ID);
+	class AEnemyBase* GetUnit(const int ID);
 
 	TArray<class AEnemyBase*>& GetEnemyList() { return UnitList; }
 

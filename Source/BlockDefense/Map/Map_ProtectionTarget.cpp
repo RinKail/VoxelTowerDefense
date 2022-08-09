@@ -28,7 +28,7 @@ void AMap_ProtectionTarget::Tick(float DeltaTime)
 
 }
 
-void AMap_ProtectionTarget::DamageCore(int Damage, class AEnemyBase* Unit)
+void AMap_ProtectionTarget::DamageCore(const int Damage, class AEnemyBase* Unit)
 {
 	Health -= Damage;
 	 OnDamageTaken(Damage);

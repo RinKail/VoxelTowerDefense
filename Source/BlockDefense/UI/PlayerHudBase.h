@@ -25,9 +25,9 @@ protected:
 
 	//Data table accessors.
 	UFUNCTION(BlueprintCallable, Category = "Buildable Data")
-		FBuildableTableRow GetStructureByName(FName RowName);
+		FBuildableTableRow GetStructureByName(const FName& RowName);
 	UFUNCTION(BlueprintCallable, Category = "Buildable Data")
-		FBuildableTableRow GetStructureByIndex(int Index);
+		FBuildableTableRow GetStructureByIndex(const int Index);
 
 
 
@@ -47,10 +47,10 @@ class BLOCKDEFENSE_API UInspectWindow : public UPlayerHudBase
 public:
 	UInspectWindow();
 
-	void NewItemSelected(FName ID, class ABuildableBase* Actor);
+	void NewItemSelected(const FName& ID, class ABuildableBase* Actor);
 	void ItemUnselected();
 
-	void ItemHoverStart(FName ID);
+	void ItemHoverStart(const FName& ID);
 	void ItemHoverEnd();
 protected: 
 
@@ -80,13 +80,13 @@ public:
 
 		//When an item has been clicked on.
 		UFUNCTION(BlueprintImplementableEvent)
-		void OnItemSelected(FBuildableTableRow SelectedItem);
+		void OnItemSelected(const FBuildableTableRow& SelectedItem);
 	//When the user presses right mouse button while an item is selected.
 	UFUNCTION(BlueprintImplementableEvent)
 		void OnItemUnselected();
 	//When the player mouses over an item.
 	UFUNCTION(BlueprintImplementableEvent)
-		void OnHighlightStart(FBuildableTableRow HoveredItem);
+		void OnHighlightStart(const FBuildableTableRow& HoveredItem);
 
 	//When the player stops mousing over an item.
 	UFUNCTION(BlueprintImplementableEvent)
@@ -107,14 +107,14 @@ class BLOCKDEFENSE_API URecipeBar : public UPlayerHudBase
 
 public: 
 
-	void StructureListUpdated(TArray<FName> In);
+	void StructureListUpdated(TArray<FName>& In);
 	
 protected:
 	
 	UFUNCTION(BlueprintImplementableEvent)
 		void OnStructureListRebuild();
 	UFUNCTION(BlueprintImplementableEvent)
-	void OnCreateItem(FBuildableTableRow Data, FName ID);
+	void OnCreateItem(const FBuildableTableRow& Data, const FName& ID);
 	
 
 
@@ -131,13 +131,13 @@ class BLOCKDEFENSE_API UCompositionDisplay : public UPlayerHudBase
 protected:
 
 	UFUNCTION(BlueprintCallable, Category = "Data")
-		void GenerateBlock(FName ID);
+		void GenerateBlock(const FName& ID);
 
 	UFUNCTION(BlueprintImplementableEvent)
 		void OnCreation(bool bTurret);
 
 	UFUNCTION(BlueprintImplementableEvent)
-	void OnBlockUpdated(FVector2D Pos, EBlockType Type);
+	void OnBlockUpdated(const FVector2D& Pos, EBlockType Type);
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Data")
 	bool IsTurret() { return bIsTurret; }
@@ -162,7 +162,7 @@ class BLOCKDEFENSE_API UResourceBar : public UPlayerHudBase
 
 public:
 
-	void UpdateCurrency(int Currency);
+	void UpdateCurrency(const int Currency);
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Selection")
 	EBlockType GetSelectedType() { return SelectedType; }
@@ -174,8 +174,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Selection")
 		void SetSelectedType(EBlockType Mode) { SelectedType = Mode; }
 
-	void PointsIncreased(int Increase);
-	void PointsDecreased(int Decrease);
+	void PointsIncreased(const int Increase);
+	void PointsDecreased(const int Decrease);
 protected:
 
 	UPROPERTY(BlueprintReadOnly, Category = "Selection")
@@ -194,8 +194,8 @@ protected:
 	//BLUEPRINT EVENTS
 
 	UFUNCTION(BlueprintImplementableEvent)
-		void OnPointsIncreased(int IncreaseAmount);
+		void OnPointsIncreased(const int IncreaseAmount);
 	UFUNCTION(BlueprintImplementableEvent)
-		void OnPointsDecreased(int DecreaseAmount);
+		void OnPointsDecreased(const int DecreaseAmount);
 
 };

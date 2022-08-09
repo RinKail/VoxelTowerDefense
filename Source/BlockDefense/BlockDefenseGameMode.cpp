@@ -104,7 +104,7 @@ void ABlockDefenseGameMode::ReplaceTile(class AMap_Tile_Game* Tile)
 	TileList[Key] = Tile;
 }
 
-void ABlockDefenseGameMode::TriggerTileUpdateVisualEvent(FVector Pos, float Intensity)
+void ABlockDefenseGameMode::TriggerTileUpdateVisualEvent(const FVector& Pos, float Intensity)
 {
 	FVector2D RootPos = FVector2D(Pos / TileScale);
 	for (const TPair<FVector2D, AMap_Tile* >& pair : TileList)

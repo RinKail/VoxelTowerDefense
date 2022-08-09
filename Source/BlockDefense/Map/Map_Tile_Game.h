@@ -37,7 +37,7 @@ public:
 
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "TileState")
-		bool CanTileTransform(int Currency);
+		bool CanTileTransform(const int Currency);
 
 	int GetCost() { return TransformationCost; }
 

@@ -49,7 +49,7 @@ protected:
 		int BonusRange;
 
 		UFUNCTION(BlueprintCallable, Category = "Player")
-		void IncreasePlayerPoints(int Value);
+		void IncreasePlayerPoints(const int Value);
 
 public:
 

@@ -30,7 +30,7 @@ public:
 protected: 
 
 	UFUNCTION(BlueprintImplementableEvent)
-	void OnDamageTaken(int DamageTaken);
+	void OnDamageTaken(const int DamageTaken);
 
 	UPROPERTY(BlueprintReadOnly, Category = "Health")
 	float Health;

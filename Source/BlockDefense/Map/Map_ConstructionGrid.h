@@ -143,11 +143,11 @@ public:
 
 	//Adds a block to the grid space, spawns it into the world space and applies the data. 
 	//Will Stack blocks in the case the position is already occupied.
-	ABuildableBase* AddBlock(FVector Position, EBlockType Type, bool bOnRootTile);
+	ABuildableBase* AddBlock(const FVector& Position, EBlockType Type, bool bOnRootTile);
 	//Removes block at the exact location provided.
-	void RemoveBlock(FVector Position);
+	void RemoveBlock(const FVector& Position);
 
-	void RemoveBuildable(FVector Position);
+	void RemoveBuildable(const FVector& Position);
 	
 
 	//Should be called at the end of Construction block visual effects and after it's been placed completely;
@@ -158,11 +158,11 @@ public:
 
 	//Searches through the construction grid and attempts to find BlockCombinations that match the available recipes. 
 	//On Success, will create the corresponding actor and add it to the grid space while removing the blocks from that cluster.
-	void FindAndCreateValidStructure(TArray<FBlockComposition> StructureList);
+	void FindAndCreateValidStructure(TArray<FBlockComposition>& StructureList);
 
 
 	//Returns any buildable at the location provided.
-	class ABuildableBase* GetBuidableAt(FVector Pos);
+	class ABuildableBase* GetBuidableAt(const FVector& Pos);
 
 	int GetTileScale() { return TileScale; }
 
@@ -176,14 +176,14 @@ public:
 
 	//Returns all structures in range. This range is based on grid values, an example of a valid range would be [3|5]. Range begins from the root position.
 	//ToDo- Make it so that range is calculated from every position the build takes up.
-	TArray<class ABuildableBase*> GetStructuresInRange(int Range, class ABuildableBase* Source, bool bTurret);
+	TArray<class ABuildableBase*> GetStructuresInRange(const int Range, class ABuildableBase* Source, bool bTurret);
 	
 	//Adds a new structure to the list of Structure recipes.
 	UFUNCTION(BlueprintCallable, Category = "Available Structures")
-	void AddAvailableStructure(FName RowName);
+	void AddAvailableStructure(const FName& RowName);
 	//Removes a structure from the list of structure recipes.
 	UFUNCTION(BlueprintCallable, Category = "Available Structures")
-	void RemoveAvailableStructure(FName RowName);
+	void RemoveAvailableStructure(const FName& RowName);
 	//Rebuilds the structure list, takes available Recipe names and collects their composition data from the provided data table.
 	UFUNCTION(BlueprintCallable, Category = "Available Structures")
 	void RebuildStructureLists();
@@ -210,7 +210,7 @@ private:
 
 
 	//Generates a structure of Construction blocks with their types and relative grid locations to the root. Only collects blocks directly adjacent in Cardinal Directions.
-	void GenerateComposition(FVector Position, FBlockComposition& Data);
+	void GenerateComposition(const FVector& Position, FBlockComposition& Data);
 
 	UPROPERTY()
 	TArray<FName> AvailableStructures;

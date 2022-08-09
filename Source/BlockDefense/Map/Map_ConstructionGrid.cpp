@@ -46,7 +46,7 @@ void AMap_ConstructionGrid::CompletePlacement(AConstructionBlock* KeyTester)
 
 	
 }
-ABuildableBase* AMap_ConstructionGrid::AddBlock(FVector Position, EBlockType Type, bool bOnRootTile)
+ABuildableBase* AMap_ConstructionGrid::AddBlock(const FVector& Position, EBlockType Type, bool bOnRootTile)
 {
 	
 	
@@ -87,7 +87,7 @@ ABuildableBase* AMap_ConstructionGrid::AddBlock(FVector Position, EBlockType Typ
 	return nullptr;
 }
 
-void AMap_ConstructionGrid::RemoveBlock(FVector Position)
+void AMap_ConstructionGrid::RemoveBlock(const FVector& Position)
 {
 	UE_LOG(LogTemp, Warning, TEXT("Removing Block: [%f | %f | %f]"), Position.X, Position.Y, Position.Z);
 
@@ -110,7 +110,7 @@ void AMap_ConstructionGrid::RemoveBlock(FVector Position)
 	}
 }
 
-void AMap_ConstructionGrid::RemoveBuildable(FVector Position)
+void AMap_ConstructionGrid::RemoveBuildable(const FVector& Position)
 {
 	//Does the structure grid contain this item?
 	if (StructureGrid.Contains(FVector2D(Position / TileScale)))
@@ -129,7 +129,7 @@ void AMap_ConstructionGrid::RemoveBuildable(FVector Position)
 	}
 }
 
-void AMap_ConstructionGrid::FindAndCreateValidStructure(TArray<FBlockComposition> StructureList)
+void AMap_ConstructionGrid::FindAndCreateValidStructure(TArray<FBlockComposition>& StructureList)
 {
 	for (int i = 0; i < RootList.Num(); i++)
 	{
@@ -179,7 +179,7 @@ void AMap_ConstructionGrid::FindAndCreateValidStructure(TArray<FBlockComposition
 	}
 }
 
-void AMap_ConstructionGrid::GenerateComposition(FVector Position, FBlockComposition& Data)
+void AMap_ConstructionGrid::GenerateComposition(const FVector& Position, FBlockComposition& Data)
 {
 	//Recursively loop through adjacent tiles, Stops at previously tested or invalid tiles.
 	if (!Data.Composition.Contains(Position) && ConstructionGrid.Contains(Position))
@@ -196,7 +196,7 @@ void AMap_ConstructionGrid::GenerateComposition(FVector Position, FBlockComposit
 //Returns either a ConstructionBlock or Turret/Building at given position
 //If returning a construction block, only returns top most block.
 //Returns nullptr on fail, functionality must account for this.
-ABuildableBase* AMap_ConstructionGrid::GetBuidableAt(FVector Pos)
+ABuildableBase* AMap_ConstructionGrid::GetBuidableAt(const FVector& Pos)
 {
 	Pos /= TileScale;
 	Pos.Z = 1;
@@ -235,7 +235,7 @@ ABuildableBase* AMap_ConstructionGrid::GetBuidableAt(FVector Pos)
 
 
 //Returns all structures in range, will return either a Turret or a building but not both.
-TArray<ABuildableBase*> AMap_ConstructionGrid::GetStructuresInRange(int Range, ABuildableBase* Source, bool bTurret)
+TArray<ABuildableBase*> AMap_ConstructionGrid::GetStructuresInRange(const int Range, ABuildableBase* Source, bool bTurret)
 {
 	TArray<class ABuildableBase*> StructuresInRange;
 	FVector2D GridPos = FVector2D(Source->GetActorLocation() / TileScale);
@@ -259,7 +259,7 @@ TArray<ABuildableBase*> AMap_ConstructionGrid::GetStructuresInRange(int Range, A
 	return StructuresInRange;
 }
 
-void AMap_ConstructionGrid::AddAvailableStructure(FName RowName)
+void AMap_ConstructionGrid::AddAvailableStructure(const FName& RowName)
 {
 	if (!AvailableStructures.Contains(RowName))
 	{
@@ -267,7 +267,7 @@ void AMap_ConstructionGrid::AddAvailableStructure(FName RowName)
 		RebuildStructureLists();
 	}
 }
-void AMap_ConstructionGrid::RemoveAvailableStructure(FName RowName)
+void AMap_ConstructionGrid::RemoveAvailableStructure(const FName& RowName)
 {
 	if (AvailableStructures.Contains(RowName))
 	{

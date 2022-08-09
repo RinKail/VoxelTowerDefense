@@ -25,7 +25,7 @@ void ABuildable_Structure::Constructed(class AMap_ConstructionGrid* InGrid)
 	AddRecipes();
 	OnBuild();
 }
-void ABuildable_Structure::IncreasePlayerPoints(int Value)
+void ABuildable_Structure::IncreasePlayerPoints(const int Value)
 {
 	Cast<ABlockDefensePlayerController>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->IncreasePoints(Value);
 }

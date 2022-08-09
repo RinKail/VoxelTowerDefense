@@ -56,7 +56,7 @@ public:
 
 	FName GetItemID() { return ItemID; }
 
-	void SetID(FName NewID) { ItemID = NewID; }
+	void SetID(const FName& NewID) { ItemID = NewID; }
 
 	bool IsTurret() { return bIsTurret; }
 

@@ -42,7 +42,7 @@ void AMap_Tile_Game::TransformTile_Complete()
 }
 
 
-bool AMap_Tile_Game::CanTileTransform(int Currency)
+bool AMap_Tile_Game::CanTileTransform(const int Currency)
 {
 	bTransformConditionsMet = (Currency >= TransformationCost && (!bFixedState && !bLockedState));
 	return bTransformConditionsMet;

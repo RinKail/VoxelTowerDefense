@@ -8,13 +8,13 @@
 #include "Kismet/GameplayStatics.h"
 
 
-FBuildableTableRow UPlayerHudBase::GetStructureByName(FName RowName)
+FBuildableTableRow UPlayerHudBase::GetStructureByName(const FName& RowName)
 {
 	static const FString ContextString(TEXT("Structure Data"));
 
 	return *Table->FindRow<FBuildableTableRow>(RowName, ContextString, true);
 }
-FBuildableTableRow UPlayerHudBase::GetStructureByIndex(int Index)
+FBuildableTableRow UPlayerHudBase::GetStructureByIndex(const int Index)
 {
 	static const FString ContextString(TEXT("Structure Data"));
 	TArray<FName> NameList = Table->GetRowNames();
@@ -38,7 +38,7 @@ UInspectWindow::UInspectWindow()
 	bItemHovered = false;
 }
 
-void UInspectWindow::NewItemSelected(FName ID, class ABuildableBase* Actor)
+void UInspectWindow::NewItemSelected(const FName& ID, class ABuildableBase* Actor)
 {
 	if (bItemSelected)
 	{
@@ -58,7 +58,7 @@ void UInspectWindow::ItemUnselected()
 	OnItemUnselected();
 }
 
-void UInspectWindow::ItemHoverStart(FName ID)
+void UInspectWindow::ItemHoverStart(const FName& ID)
 {
 	bItemHovered = true;
 	OnHighlightStart(GetStructureByName(ID));
@@ -85,7 +85,7 @@ void UInspectWindow::SellBuildable()
 }
 
 
-void URecipeBar::StructureListUpdated(TArray<FName> In)
+void URecipeBar::StructureListUpdated(TArray<FName>& In)
 {
 	AvailableItems = In;
 	OnStructureListRebuild();
@@ -97,7 +97,7 @@ void URecipeBar::StructureListUpdated(TArray<FName> In)
 
 }
 
-void UCompositionDisplay::GenerateBlock(FName ID)
+void UCompositionDisplay::GenerateBlock(const FName& ID)
 {
 	//Get the data from the data table.
 	Composition = GetStructureByName(ID).BlockComposition;
@@ -167,12 +167,12 @@ void UCompositionDisplay::GenerateBlock(FName ID)
 }
 
 
-void UResourceBar::PointsIncreased(int Increase)
+void UResourceBar::PointsIncreased(const int Increase)
 {
 	Currency += Increase;
 	OnPointsIncreased(Increase);
 }
-void UResourceBar::PointsDecreased(int Decrease)
+void UResourceBar::PointsDecreased(const int Decrease)
 {
 	Currency -= Decrease;
 	OnPointsDecreased(Decrease);
